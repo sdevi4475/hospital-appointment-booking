@@ -3,17 +3,22 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-st.set_page_config(page_title="Hospital Appointment Analysis", layout="wide")
+st.set_page_config(page_title="🏥 Hospital Appointment Analysis", layout="wide")
 
 st.title("🏥 Hospital Appointment Data Preprocessing & Analysis")
 
-# --- Upload Dataset ---
-st.sidebar.header("Upload Dataset")
-uploaded_file = st.sidebar.file_uploader("Upload CSV file", type=["csv"])
+# --- GitHub Dataset URL ---
+# 🔹 Replace this link with your own raw GitHub CSV link
+github_csv_url = "https://raw.githubusercontent.com/<your-username>/<your-repo-name>/main/hospital%20appointment%20booking.csv"
 
-if uploaded_file:
-    df = pd.read_csv(uploaded_file)
-    st.subheader("📊 Raw Data Preview")
+@st.cache_data
+def load_data():
+    df = pd.read_csv(github_csv_url)
+    return df
+
+try:
+    df = load_data()
+    st.success("✅ Data loaded successfully from GitHub!")
     st.dataframe(df.head())
 
     # --- Data Inspection ---
@@ -75,5 +80,5 @@ if uploaded_file:
         df.to_csv("cleaned_data.csv", index=False)
         st.success("✅ Cleaned data saved as 'cleaned_data.csv'")
 
-else:
-    st.info("Please upload your hospital appointment CSV file to begin.")
+except Exception as e:
+    st.error(f"❌ Failed to load data. Please check your GitHub link.\n\nError: {e}")
