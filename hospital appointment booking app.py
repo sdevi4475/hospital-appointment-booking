@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+pip install matplotlib
 
 st.set_page_config(page_title="🏥 Hospital Appointment Analysis", layout="wide")
 
@@ -82,3 +82,4 @@ try:
 
 except Exception as e:
     st.error(f"❌ Failed to load data. Please check your GitHub link.\n\nError: {e}")
+
