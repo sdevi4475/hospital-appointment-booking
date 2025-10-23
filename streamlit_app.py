@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import io
 
 st.set_page_config(page_title="Hospital Appointment Analysis", layout="wide")
 
@@ -20,8 +21,10 @@ if uploaded_file:
     st.subheader("🔍 Data Inspection")
     st.write("**Shape:**", df.shape)
     st.write("**Column Info:**")
-    buffer = df.info(buf=None)
-    st.text(buffer)
+    buffer = io.StringIO()
+    df.info(buf=buffer)
+    info_str = buffer.getvalue()
+    st.text(info_str)
     st.write("**Summary Statistics:**")
     st.write(df.describe(include="all"))
 
