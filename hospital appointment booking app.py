@@ -9,7 +9,7 @@ st.title("🏥 Hospital Appointment Data Preprocessing & Analysis")
 
 # --- GitHub Dataset URL ---
 # 🔹 Replace this link with your own raw GitHub CSV link
-github_csv_url = "https://raw.githubusercontent.com/<your-username>/<your-repo-name>/main/hospital%20appointment%20booking.csv"
+github_csv_url = "https://raw.githubusercontent.com/<hospital appointment booking>/<hospital appointment booking app.py>/main/hospital%20appointment%20booking.csv"
 
 @st.cache_data
 def load_data():
